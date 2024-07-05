@@ -1,0 +1,10 @@
+{
+  "name": "fjala-e-bukur",
+  "version": "1.0.0",
+  "author": "Jeton Thaçi",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
