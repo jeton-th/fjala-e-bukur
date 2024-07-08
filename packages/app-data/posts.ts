@@ -12,4 +12,4 @@ export const posts: PostType[] = faker.helpers
   .multiple(createRandomUser, {
     count: 100,
   })
-  .map((post, id) => ({ id, ...post }));
+  .map((post, id) => ({ id: id.toString(), ...post }));
