@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { PostType } from "./types";
+import { getVerse, getVerseEndSymbol } from "quran-db";
 
 export function createRandomUser(): Pick<PostType, "title" | "content"> {
   return {
@@ -47,6 +48,10 @@ export const posts: PostType[] = [
       {
         type: "text",
         text: `Kështu ramë dakord me shtëpine botuese "El Mektubul Islamij", për nxjerrjen e librit "Fjala e bukur"1 me petkun e tij të ri dhe me titull: "Përmbledhja e haditheve të sakta të librit Fjala e bukur", prej të cilit kemi hequr hadithet e pasakta`,
+      },
+      {
+        type: "text",
+        text: `${getVerse(2, 22)}  ${getVerseEndSymbol(5, true)}`,
       },
     ],
   },
