@@ -1,10 +1,12 @@
 export interface PostType {
-  id: string;
+  id: number;
   title: string;
-  content: ParagraphType[];
+  content: PostContentType[];
 }
 
-export interface ParagraphType {
+export interface PostContentType {
+  type: TextType;
   text: string;
-  type: "text" | "quote" | "reference";
 }
+
+export type TextType = "title" | "latin" | "ayah" | "dhikr";

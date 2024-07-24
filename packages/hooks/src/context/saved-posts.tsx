@@ -12,9 +12,9 @@ import {
 
 const key = 'saved-posts'
 const SavedPostsContext = createContext<{
-  savedPosts: string[]
-  savePost: (postId: string) => void
-  removePost: (postId: string) => void
+  savedPosts: number[]
+  savePost: (postId: number) => void
+  removePost: (postId: number) => void
 }>({} as any)
 
 export const useSavedPosts = () => useContext(SavedPostsContext)
@@ -22,7 +22,7 @@ export const useSavedPosts = () => useContext(SavedPostsContext)
 export const SavedPostsContextProvider: FunctionComponent<
   PropsWithChildren
 > = ({ children }) => {
-  const [savedPosts, setSavedPosts] = useState<string[]>([])
+  const [savedPosts, setSavedPosts] = useState<number[]>([])
 
   useEffect(() => {
     try {
@@ -35,11 +35,9 @@ export const SavedPostsContextProvider: FunctionComponent<
     }
   }, [])
 
-  const savePost = useCallback((postId: string) => {
+  const savePost = useCallback((postId: number) => {
     try {
-      const locallySavedPosts = JSON.parse(
-        localStorage.getItem(key) || '[]',
-      ) as string[]
+      const locallySavedPosts = JSON.parse(localStorage.getItem(key) || '[]')
       locallySavedPosts.push(postId)
       localStorage.setItem(key, JSON.stringify(locallySavedPosts))
       setSavedPosts(locallySavedPosts)
@@ -48,12 +46,12 @@ export const SavedPostsContextProvider: FunctionComponent<
     }
   }, [])
 
-  const removePost = useCallback((postId: string) => {
+  const removePost = useCallback((postId: number) => {
     try {
-      let locallySavedPosts = JSON.parse(
-        localStorage.getItem(key) || '[]',
-      ) as string[]
-      locallySavedPosts = locallySavedPosts.filter((id) => id !== postId)
+      let locallySavedPosts = JSON.parse(localStorage.getItem(key) || '[]')
+      locallySavedPosts = locallySavedPosts.filter(
+        (id: number) => id !== postId,
+      )
       localStorage.setItem(key, JSON.stringify(locallySavedPosts))
       setSavedPosts(locallySavedPosts)
     } catch (error) {
