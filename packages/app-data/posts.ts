@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { PostType } from "./types";
-// import { getVerse } from "quran-db";
+// @ts-expect-error
+import { getVerse, getVerseEndSymbol } from "quran-db";
 
 export function createRandomUser(): Pick<PostType, "title" | "content"> {
   return {
@@ -42,7 +43,7 @@ export const posts: PostType[] = [
       },
       {
         type: "latin",
-        text: `Është e njohur se t'u paraqesësh dhe t'u ofrosh njerëzve Sunetin të dëlire dhe të pastër, pa hadithet që nuk vërtetohen te dijetarët e hadithit, është më e dobishme për ta, më lëhtesuese dhe ua bën fenë e tyre më të pranueshme. Kjo është më parësore sesa t'ua paraqesësh fenë njerëzve me libra në të cilët ka hadithe që nuk vërtetohet përkatesia te Pejgamberi sal-lAllahu alejhi ue sel-lem, apo që ka edhe hadithe të shpikura, siç është edhe gjendja e shumicës së librave të hadithit, pa përmendur librat e tjerë, e veçanërisht librat e lutjeve dhe dhikrit. [Është më mire që librat të jepen të pastër vetëm me hadithe të sakta, sesa të jepen edhe me hadithe të pasakta] qoftë edhe me vërejtje dhe sqarim i të saktës nga e pasakta (e dobëta), sikurse kemi vepruar në recensimin e këtij libri apo të tjerëve. Pa dyshim se paraqitja për lexuesin e këtij libri të "paster" nga hadithet e pavërtetuara, është me e dobishme dhe më e lehtë që njerëzit të mësojne dhe verojnë me të.`,
+        text: `Është e njohur se t'u paraqesësh dhe t'u ofrosh njerëzve Sunetin të dëlire dhe të pastër, pa hadithet që nuk vërtetohen te dijetarët e hadithit, është më e dobishme për ta, më lëhtesuese dhe ua bën fenë e tyre më të pranueshme. Kjo është më parësore sesa t'ua paraqesësh fenë njerëzve me libra në të cilët ka hadithe që nuk vërtetohet përkatesia te Pejgamberi sal-lAllahu alejhi ue sel-lem, apo që ka edhe hadithe të shpikura, siç është edhe gjendja e shumicës së librave të hadithit, pa përmendur librat e tjerë, e veçanërisht librat e lutjeve dhe dhikrit. Është më mirë që librat të jepen të pastër vetëm me hadithe të sakta, sesa të jepen edhe me hadithe të pasakta] qoftë edhe me vërejtje dhe sqarim i të saktës nga e pasakta (e dobëta), sikurse kemi vepruar në recensimin e këtij libri apo të tjerëve. Pa dyshim se paraqitja për lexuesin e këtij libri të "paster" nga hadithet e pavërtetuara, është me e dobishme dhe më e lehtë që njerëzit të mësojne dhe verojnë me të.`,
       },
 
       {
@@ -69,10 +70,26 @@ export const posts: PostType[] = [
         type: "latin",
         text: `Bejrut 26 Sheual 139 h.`,
       },
-      // {
-      //   type: "latin",
-      //   text: getVerse(2, 22, true),
-      // },
+      {
+        type: "title",
+        text: `Me emrin e Allahut, të Gjithëmëshirshmit, Mëshiruesit`,
+      },
+      {
+        type: "latin",
+        text: `Përshëndetjet e Allahut qofshin mbi Muhamedin, krijesën e Tij më të nderuar. Lavdi Allahut dhe Allahu i mjafton çdo robit të vet. Shpëtimi i Allahut qoftë mbi robërit e Tij të cilët i ka zgjedhur. Dëshmoj se nuk ka të adhuruar me të drejtë përveç Allahut, të Vetëm e të pashoq dhe dëshmoj se Muhamedi është robi dhe i dërguari i Tij.`,
+      },
+      {
+        type: "latin",
+        text: `Allahu i Lartësuar thotë:`,
+      },
+      {
+        type: "ayah",
+        text: `${getVerse(33, 70, true)} ${getVerse(33, 71, true)}`,
+      },
+    ],
+    footnotes: [
+      `El Kelim et-tajib, pra libri në dorë të lexuesit. [Përkthyesi]`,
+      `Kurse në këtë botim e kam vendosur me shkrim të vogël duke e ndjekur metodën që kam praktikuar tek libri "Sahih suneni Ibni Maxheh" dhe në katër sunenet tjera.`,
     ],
   },
   {
