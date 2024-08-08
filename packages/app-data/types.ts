@@ -10,4 +10,4 @@ export interface PostContentType {
   text: string;
 }
 
-export type TextType = "title" | "latin" | "ayah" | "dhikr";
+export type TextType = "title" | "latin" | "ayah" | "quote";

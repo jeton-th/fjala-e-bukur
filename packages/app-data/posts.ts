@@ -1,7 +1,8 @@
 import { faker } from "@faker-js/faker";
 import { PostType } from "./types";
-// @ts-expect-error
-import { getVerse, getVerseEndSymbol } from "quran-db";
+import Quran from "quran";
+
+const { getVerses } = Quran();
 
 export function createRandomUser(): Pick<PostType, "title" | "content"> {
   return {
@@ -84,12 +85,22 @@ export const posts: PostType[] = [
       },
       {
         type: "ayah",
-        text: `${getVerse(33, 70, true)} ${getVerse(33, 71, true)}`,
+        text: getVerses({
+          surahNumber: 33,
+          ayahNumber: 70,
+          length: 2,
+          stripWordsFromEnd: 9,
+        }),
+      },
+      {
+        type: "quote",
+        text: `"O besimtarë, frikësohuni Allahut dhe thoni vetëm të vërtetën. Ai do t'jua përmirësojë veprat e tuaja dhe do t'jua falë gjynahet."<sup>3</sup>`,
       },
     ],
     footnotes: [
       `El Kelim et-tajib, pra libri në dorë të lexuesit. [Përkthyesi]`,
       `Kurse në këtë botim e kam vendosur me shkrim të vogël duke e ndjekur metodën që kam praktikuar tek libri "Sahih suneni Ibni Maxheh" dhe në katër sunenet tjera.`,
+      `El Ahzab: 70-71`,
     ],
   },
   {
