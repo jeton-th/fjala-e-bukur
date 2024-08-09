@@ -6,4 +6,28 @@
   .container {
     @apply px-4 mx-auto max-w-screen-sm;
   }
+
+  .bg-primary {
+    @apply bg-cyan-700;
+  }
+
+  .text-primary {
+    @apply text-cyan-700;
+  }
+
+  .main-text sup {
+    @apply text-blue-600;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &::before {
+      content: "[";
+    }
+
+    &::after {
+      content: "]";
+    }
+  }
 }

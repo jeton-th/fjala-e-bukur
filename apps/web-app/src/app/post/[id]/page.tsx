@@ -1,7 +1,10 @@
+"use client";
+
+import { useEffect } from "react";
 import { posts } from "app-data/posts";
 import { Star } from "@/components/client";
 import { Text } from "@/components/server";
-import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Page({
   params: { id: stringId },
@@ -10,6 +13,18 @@ export default function Page({
 }) {
   const id = parseInt(stringId);
   const post = posts[id];
+
+  const router = useRouter();
+  useEffect(() => {
+    const supNodes = document?.querySelectorAll("sup");
+    supNodes.forEach((sup, i) => {
+      if (i < supNodes.length / 2) {
+        sup.onclick = () => {
+          router.push(`#note${i + 1}`);
+        };
+      }
+    });
+  }, [router]);
 
   if (!post) return null;
   const { title, content, footnotes } = post;
@@ -26,7 +41,7 @@ export default function Page({
         </div>
       )}
 
-      <div className="flex flex-col gap-4">
+      <div className="main-text flex flex-col gap-4">
         {content.map(({ type, text }, i) => (
           <Text key={i} type={type} text={text} />
         ))}
@@ -37,9 +52,9 @@ export default function Page({
           <hr className="my-8 w-1/2" />
           <ol>
             {footnotes.map((note, i) => (
-              <li key={i} className="text-sm leading-6">
+              <li key={i} id={`note${i + 1}`} className="text-sm leading-6">
                 <sup>{i + 1} </sup>
-                <span>{note}</span>
+                <span> {note}</span>
               </li>
             ))}
           </ol>
