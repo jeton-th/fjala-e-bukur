@@ -1,21 +1,7 @@
-import { faker } from "@faker-js/faker";
 import { PostType } from "./types";
 import Quran from "quran";
 
 const { getVerses } = Quran();
-
-export function createRandomUser(): Pick<PostType, "title" | "content"> {
-  return {
-    title: faker.lorem.sentence(),
-    content: [{ type: "latin", text: faker.lorem.paragraph() }],
-  };
-}
-
-// export const posts: PostType[] = faker.helpers
-//   .multiple(createRandomUser, {
-//     count: 100,
-//   })
-//   .map((post, id) => ({ id: id.toString(), ...post }));
 
 export const posts: PostType[] = [
   {
@@ -95,6 +81,20 @@ export const posts: PostType[] = [
       {
         type: "quote",
         text: `"O besimtarë, frikësohuni Allahut dhe thoni vetëm të vërtetën. Ai do t'jua përmirësojë veprat e tuaja dhe do t'jua falë gjynahet."<sup>3</sup>`,
+      },
+      {
+        type: "latin",
+        text: `Dhe ka thënë i Lartësuari:`,
+      },
+      {
+        type: "ayah",
+        text: getVerses({
+          surahNumber: 35,
+          ayahNumber: 10,
+          length: 1,
+          stripWordsFromStart: 7,
+          stripWordsFromEnd: 11,
+        }),
       },
     ],
     footnotes: [

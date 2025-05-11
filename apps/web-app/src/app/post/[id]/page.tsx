@@ -1,10 +1,6 @@
-"use client";
-
-import { useEffect } from "react";
 import { posts } from "app-data/posts";
 import { Star } from "@/components/client";
 import { Text } from "@/components/server";
-import { useRouter } from "next/navigation";
 
 export default function Page({
   params: { id: stringId },
@@ -13,18 +9,6 @@ export default function Page({
 }) {
   const id = parseInt(stringId);
   const post = posts[id];
-
-  const router = useRouter();
-  useEffect(() => {
-    const supNodes = document?.querySelectorAll("sup");
-    supNodes.forEach((sup, i) => {
-      if (i < supNodes.length / 2) {
-        sup.onclick = () => {
-          router.push(`#note${i + 1}`);
-        };
-      }
-    });
-  }, [router]);
 
   if (!post) return null;
   const { title, content, footnotes } = post;
@@ -43,18 +27,28 @@ export default function Page({
 
       <div className="main-text flex flex-col gap-4">
         {content.map(({ type, text }, i) => (
-          <Text key={i} type={type} text={text} />
+          <Text
+            key={i}
+            type={type}
+            text={text.replace(
+              /<sup>(\d+)<\/sup>/gm,
+              `<a href="#note$1" class="link"><sup>[$1]</sup></a>`
+            )}
+          />
         ))}
       </div>
 
       {footnotes?.length && (
         <div>
           <hr className="my-8 w-1/2" />
-          <ol>
+          <ol className="mx-8">
             {footnotes.map((note, i) => (
-              <li key={i} id={`note${i + 1}`} className="text-sm leading-6">
-                <sup>{i + 1} </sup>
-                <span> {note}</span>
+              <li
+                key={i + 1}
+                id={`note${i + 1}`}
+                className="text-sm leading-6 list-decimal"
+              >
+                {note}
               </li>
             ))}
           </ol>

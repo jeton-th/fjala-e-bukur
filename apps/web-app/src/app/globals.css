@@ -2,32 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  .link {
+    @apply: text-red-500 hover:decoration-solid;
+  }
+}
+
 @layer components {
   .container {
     @apply px-4 mx-auto max-w-screen-sm;
   }
 
   .bg-primary {
-    @apply bg-cyan-700;
+    @apply bg-sky-700;
   }
 
   .text-primary {
-    @apply text-cyan-700;
-  }
-
-  .main-text sup {
-    @apply text-blue-600;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    &::before {
-      content: "[";
-    }
-
-    &::after {
-      content: "]";
-    }
+    @apply text-sky-700;
   }
 }
